@@ -1,0 +1,113 @@
+# coding: utf-8
+# 自分の得意な言語で
+# Let's チャレンジ！！
+
+def gg(tama, fld):
+    if(tama[0] == 1):
+        fld[tama[1]][tama[2]] = 1
+    elif(tama[0] == 1):
+        fld[tama[1]][tama[2]] = 2
+    print(fld)
+    ret(tama, fld)
+    return 0
+
+def ret(tama, fld):
+    x = tama[1] 
+    y = tama[2]
+    if(tama[1] != 0):
+        for i in range(tama[1]-2, -1, -1):
+            if(tama[0] == fld[i][y]):
+                for k in range(tama[1]-2, i-1, -1):
+                    fld[k][y] = tama[0]
+                break
+    if(tama[1] != 7):
+        for i in range(tama[1]+1, 8):
+            if(tama[0] == fld[i][y]):
+                for k in range(tama[1]+1, i):
+                    fld[k][y] = tama[0]
+                break
+    if(tama[2] != 0):
+        for i in range(tama[2]-2, -1, -1):
+            if(tama[0] == fld[x][i]):
+                for k in range(tama[2]-2, i-1, -1):
+                    fld[x][k] = tama[0]
+                break
+    if(tama[2] != 7):
+        for i in range(tama[2]+1, 8):
+            if(tama[0] == fld[x][i]):
+                for k in range(tama[2], i):
+                    fld[x][k] = tama[0]
+                break
+    if(tama[1] != 0):
+        for i in range(tama[1]-2, -1, -1):
+            z = 1
+            if(y-z < 0):
+                break
+            if(tama[0] == fld[i][y-z]):
+                for k in range(tama[1]-2, i-1,-1):
+                    j = 1
+                    fld[k][y-j] = tama[0]
+                    j += 1
+                break
+            z += 1
+    if(tama[1] != 7):
+        for i in range(tama[1]+1, 8):
+            z = 1
+            if(y+z > 7):
+                break
+            if(tama[0] == fld[i][y+z]):
+                for k in range(tama[1]+1, i):
+                    j = 1
+                    fld[k][y+j] = tama[0]
+                    j += 1
+                break
+            z += 1
+    if(tama[1] != 0):
+        for i in range(tama[1]-2, -1, -1):
+            z = 1
+            if(y+z > 7):
+                break
+            if(tama[0] == fld[i][y+z]):
+                for k in range(tama[1]-2, -1, -1):
+                    j = 1
+                    fld[k][y+z] = tama[0]
+                    j += 1
+                break
+            z += 1
+    if(tama[1] != 7):
+        for i in range(tama[1]+1, 8):
+            z = 1
+            if(y-z < 0):
+                break
+            if(tama[0] == fld[i][y-z]):
+                for k in range(tama[1]+1, i):
+                    j = 1
+                    fld[k][y-z] = tama[0]
+                    j += 1
+                break
+            z += 1
+    
+x = int(input())
+fld = []
+b = 0
+w = 0
+yoko = [0,0,0,0,0,0,0,0]
+for i in range(8):
+    fld.append(yoko)
+for i in range(x):
+    tama = input()
+    tama = tama.split()
+    if(tama[0] == "B"):
+        tama[0] = 1
+    elif(tama[0] == "W"):
+        tama[0] = 2
+    tama[1] = int(tama[1])-1
+    tama[2] = int(tama[2])-1    
+    gg(tama, fld)
+for i in range(8):
+    for k in range(8):
+        if(fld[i][k] == 1):
+            b += 1
+        elif(fld[i][k] == 2):
+            w += 1
+print(b,w)

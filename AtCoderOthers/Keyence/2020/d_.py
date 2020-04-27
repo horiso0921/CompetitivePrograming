@@ -1,0 +1,1 @@
+n, a, b = int(input()), list(map(int, input().split())), list(map(int, input().split()));dp[1<<]
