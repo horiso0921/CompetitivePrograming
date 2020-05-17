@@ -11,8 +11,8 @@ def LF(): return list(map(float, input().split()))
 def LI_(): return list(map(lambda x: int(x)-1, input().split()))
 def II(): return int(input())
 def IF(): return float(input())
-def LS(): return list(map(list, input().split()))
-def S(): return list(input().rstrip())
+def S(): return input().rstrip()
+def LS(): return S().split()
 def IR(n): return [II() for _ in range(n)]
 def LIR(n): return [LI() for _ in range(n)]
 def FR(n): return [IF() for _ in range(n)]
@@ -21,31 +21,18 @@ def LIR_(n): return [LI_() for _ in range(n)]
 def SR(n): return [S() for _ in range(n)]
 def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
-inf = float('INF')
+inf = float("INF")
 
 #solve
 def solve():
-    n, m, s = LI()
-    uv = LIR_(m)
-    edg = [[] for i in range(n)]
-    for u, v in uv:
-        edg[v].append(u)
-        edg[u].append(v)
-    c = [False] * n
-    dp = [-1] * n
-    q = deque([s - 1])
-    c[s - 1] = True
-    while q:
-        p = q,
-        score = dp[p]
-        for e in edg[p]:
-            if dp[e] == -1:
-                if e < score: c[e] = True
-                dp[e] = min(e, score)
-                heappush(q, (-dp[e], e))
-    for i in range(n):
-        if c[i]:
-            print(i + 1)
+    n, k = LI()
+    ans = [1] * n
+    for _ in range(k):
+        d = II()
+        a = LI_()
+        for ai in a:
+            ans[ai] = 0
+    print(sum(ans))
     return
 
 

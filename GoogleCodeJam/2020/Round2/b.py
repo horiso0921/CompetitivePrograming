@@ -11,8 +11,8 @@ def LF(): return list(map(float, input().split()))
 def LI_(): return list(map(lambda x: int(x)-1, input().split()))
 def II(): return int(input())
 def IF(): return float(input())
-def LS(): return list(map(list, input().split()))
-def S(): return list(input().rstrip())
+def S(): return input().rstrip()
+def LS(): return S().split()
 def IR(n): return [II() for _ in range(n)]
 def LIR(n): return [LI() for _ in range(n)]
 def FR(n): return [IF() for _ in range(n)]
@@ -25,27 +25,25 @@ inf = float('INF')
 
 #solve
 def solve():
-    n, m, s = LI()
-    uv = LIR_(m)
-    edg = [[] for i in range(n)]
-    for u, v in uv:
-        edg[v].append(u)
-        edg[u].append(v)
-    c = [False] * n
-    dp = [-1] * n
-    q = deque([s - 1])
-    c[s - 1] = True
-    while q:
-        p = q,
-        score = dp[p]
-        for e in edg[p]:
-            if dp[e] == -1:
-                if e < score: c[e] = True
-                dp[e] = min(e, score)
-                heappush(q, (-dp[e], e))
-    for i in range(n):
-        if c[i]:
-            print(i + 1)
+    t = II()
+    ans = [None for i in range(t)]
+    for i in range(t):
+        n, v = LI()
+        ci = [0]+LI()
+        tmp = [-1] * (v)
+        edg = [[] for _ in range(n)]
+        uv = LIR_(v)
+        d = defaultdict(int)
+        for j, (u, v) in enumerate(uv):
+            edg[u].append(v)
+            edg[v].append(u)
+            tmp[j] = max(abs(ci[u] - ci[v]), 1)
+        ans[i] = tmp
+        
+    for i in range(t):
+        print("Case #{}: ".format(i + 1), end="")
+        print(*ans[i])
+
     return
 
 
