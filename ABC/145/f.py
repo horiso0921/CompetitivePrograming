@@ -48,6 +48,27 @@ def solve():
     print(ans)
     return
 
+def f():
+    n, k = LI()
+    h = LI()
+    H = len(set(h)) + 1
+    d = defaultdict(int)
+    rd = defaultdict(int)
+    for i, hi in enumerate(sorted(h + [0])):
+        d[hi] = i
+        rd[i] = hi
+    dp = [[inf] * H for i in range(k + 1)]
+    for i in h:
+        tmp = [[inf] * H for i in range(k + 1)]
+        for j in range(k + 1):
+            dpj = dp[j]
+            tmp[j][d[i]] = min(dpj[-d[i]:], min(map(lambda x: d[i] - rd[x] + dpj[x], range(d[i]))))
+        for l in range(1, k + 1):
+            from_top = [inf] * H
+            from_bottom = [inf] * H
+            for j in range(H - 1):
+                from_top[j + 1] = min(from_bottom[j], dp[])
+            
 
 #main
 if __name__ == '__main__':
