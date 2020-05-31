@@ -1,0 +1,20 @@
+[None, None, None, None, None, None, None, None, None, None]
+[None, None, None, None, None, None, None, None, None, None]
+[None, 3, None, None, None, None, None, None, None, None]
+[None, 3, None, None, None, None, None, None, None, None]
+[None, 3, None, None, 5, None, None, None, None, None]
+[None, 3, None, None, 5, None, None, None, None, None]
+[7, 3, 7, 7, 5, None, 7, 7, None, 7]
+[7, 3, 7, 7, 5, None, 7, 7, None, 7]
+[7, 3, 7, 7, 5, 9, 7, 7, None, 7]
+[7, 3, 7, 7, 5, 9, 7, 7, 10, 7]
+7
+3
+7
+7
+5
+9
+7
+7
+10
+7
