@@ -28,66 +28,59 @@ def solve():
     n = II()
     q1 = []
     q2 = []
-    l1 = [[None, None] for i in range(n)] 
-    l2 = [[None, None] for i in range(n)] 
+    l2 = [None for i in range(n)] 
     container = [[] for i in range(n)]
     d = defaultdict(int)
     for i in range(n):
         t, *k = LI()
-        k = [(k[j], j) for j in range(t)]
         container[i] = deque(k)
     m = II()
     a = LI()
     for i in range(n):
-        q, j = container[i].popleft()
-        heappush(q1, (-q, i, j))
-        heappush(q2, (-q, i, j))
+        q = container[i].popleft()
+        heappush(q1, (-q, i))
+        heappush(q2, (-q, i))
         if container[i]:
-            q, j = container[i].popleft()
-            l2[i] = (-q, j)
-            heappush(q2, (-q, i, j))
+            q = container[i].popleft()
+            l2[i] = q
+            heappush(q2, (-q, i))
     for i in a:
         if i == 1:
-            x, i, j = heappop(q1)
+            x, i = heappop(q1)
             x = -x
-            while d[(i, j)]:
-                x, i, j = heappop(q1)
+            while d[x]:
+                x, i = heappop(q1)
                 x = -x
-            d[(i, j)] = 1
-            if l2[i][0] != None:
-                heappush(q1, (-l2[i][0], i, l2[i][1]))
-                l2[i] = (None, None)
+            d[x] = 1
+            if l2[i] != None:
+                heappush(q1, (-l2[i], i))
+                l2[i] = None
                 if container[i]:
-                    q, j = container[i].popleft()
-                    l2[i] = (-q, j)
-                    heappush(q2, (-q, i, j))
+                    q = container[i].popleft()
+                    l2[i] = q
+                    heappush(q2, (-q, i))
             print(x)
         else:
-            x, i, j = heappop(q2)
+            x, i = heappop(q2)
             x = -x
-            while d[(i, j)]:
-                x, i, j = heappop(q2)
+            while d[x]:
+                x, i = heappop(q2)
                 x = -x
-            if l2[i][1] == j:
-                heappush(q1, (l2[i][0], i, l2[i][1]))
-                d[(i, j)] = 1
-                l2[i] = (None, None)
+            d[x] = 1
+            if l2[i] == x:
+                l2[i] = None
                 if container[i]:
-                    q, j = container[i].popleft()
-                    l2[i] = (-q, j)
-                    heappush(q2, (-q, i, j))
+                    q = container[i].popleft()
+                    heappush(q2, (-q, i))
+                    l2[i] = q
             else:
-                while d[(i, j)]:
-                    x, i, j = heappop(q1)
-                    x = -x
-                d[(i, j)] = 1
-                if l2[i][0] != None:
-                    heappush(q1, (-l2[i][0], i, l2[i][1]))
-                    l2[i] = (None, None)
+                if l2[i] != None:
+                    heappush(q1, (-l2[i], i))
+                    l2[i] = None
                     if container[i]:
-                        q, j = container[i].popleft()
-                        l2[i] = (-q, j)
-                        heappush(q2, (-q, i, j))
+                        q = container[i].popleft()
+                        heappush(q2, (-q, i))
+                        l2[i] = q
             print(x)
 
         
