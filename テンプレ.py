@@ -2,7 +2,7 @@
 from collections import defaultdict,deque
 from heapq import heappush, heappop
 from bisect import bisect_left, bisect_right
-import sys, random, itertools, math
+import sys, itertools, math
 sys.setrecursionlimit(10**5)
 input = sys.stdin.readline
 sqrt = math.sqrt
@@ -13,13 +13,41 @@ def II(): return int(input())
 def IF(): return float(input())
 def S(): return input().rstrip()
 def LS(): return S().split()
-def IR(n): return [II() for _ in range(n)]
-def LIR(n): return [LI() for _ in range(n)]
-def FR(n): return [IF() for _ in range(n)]
-def LFR(n): return [LI() for _ in range(n)]
-def LIR_(n): return [LI_() for _ in range(n)]
-def SR(n): return [S() for _ in range(n)]
-def LSR(n): return [LS() for _ in range(n)]
+def IR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = II()
+  return res
+def LIR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = LI()
+  return res
+def FR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = IF()
+  return res
+def LIR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = IF()
+  return res
+def LIR_(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = LI_()
+  return res
+def SR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = S()
+  return res
+def LSR(n):
+  res = [None] * n
+  for i in range(n):
+    res[i] = LS()
+  return res
 mod = 1000000007
 inf = float('INF')
 
