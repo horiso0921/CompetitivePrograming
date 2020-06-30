@@ -53,34 +53,9 @@ inf = float('INF')
 
 #solve
 def solve():
-    n = II()
-    edg = [[] for i in range(n)]
-    for _ in range(n-1):
-        a, b = LI_()
-        edg[a].append(b)
-        edg[b].append(a)
-    def djk(s):
-        dist = [inf] * n
-        q = [(0, s)]
-        dist[s] = 0
-        while q:
-            score, p = heappop(q)
-            for e in edg[p]:
-                if dist[e] > score + 1:
-                    dist[e] = score + 1
-                    heappush(q, (dist[e], e))
-        return dist
-    dist1 = djk(0)
-    ans = [0, 0]
-    for i in range(n):
-        if ans[0] < dist1[i]:
-            ans = [dist1[i], i]
-    dist2 = djk(ans[1])
-    ans2 = [0, 0]
-    for i in range(n):
-        if ans2[0] < dist2[i]:
-            ans2 = [dist2[i], i]
-    print(ans[1]+1, ans2[1]+1)
+    n, m = LI()
+    w = LI()
+    xy = LIR(m)
     return
 
 
