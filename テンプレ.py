@@ -28,7 +28,7 @@ def FR(n):
   for i in range(n):
     res[i] = IF()
   return res
-def LIR(n):
+def LFR(n):
   res = [None] * n
   for i in range(n):
     res[i] = IF()
@@ -53,6 +53,67 @@ inf = float('INF')
 
 #solve
 def solve():
+  return
+
+
+#main
+if __name__ == '__main__':
+  solve()
+
+class UnionFinde:
+  def __init__(self, n):
+    self.par = [i for i in range(n)]
+    self.n = n
+  
+  def root(self, x):
+    if self.par[x] == x:
+      return x
+    self.par[x] = self.root(self.par[x])
+    return self.par[x]
+  
+  def unite(self, x, y):
+    x = self.root(x)
+    y = self.root(y)
+    if x == y: return False
+    if x < y: x, y = y,x
+    self.par[y] = x
+    return True
+  
+#solve
+def solve():
+  t = II()
+  for _ in range(t):
+    n = II()
+    klr = LIR(n)
+    klr.sort(reverse=True, key=lambda x: abs(x[1] - x[2]))
+    bitl = UnionFinde(n + 1)
+    bitr = UnionFinde(n + 1)
+    ans = 0
+    for k, l, r in klr:
+      if l > r:
+        x = bitl.root(k)
+        if x == 0:
+          x = bitr.root(n-k)
+          ans += r
+          bitr.unite(x, x - 1)
+          bitl.unite(n - x, n - x + 1)
+        else:
+          ans += l
+          bitl.unite(x, x - 1)
+          bitr.unite(n - x, n - x + 1)
+      else:
+        x = bitr.root(k)
+        if x == 0:
+          x = bitl.root(n-k)
+          ans += l
+          bitl.unite(x, x - 1)
+          bitr.unite(n - x, n - x + 1)
+        else:
+          ans += r
+          bitr.unite(x, x - 1)
+          bitl.unite(n - x, n - x + 1)
+      print(ans)
+
   return
 
 
