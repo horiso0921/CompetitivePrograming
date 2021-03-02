@@ -34,3 +34,5 @@
 ### 3/02
 
 模擬国内[2009](https://github.com/horiso0921/CompetitivePrograming/tree/master/ICPC/Trial-JP/2009)A-幸運の操作者(100 点)[問題リンク](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2149&lang=jp)
+
+模擬国内[2014](https://github.com/horiso0921/CompetitivePrograming/tree/master/ICPC/Trial-JP/2014)A-踏み台昇降(100 点)[問題リンク](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2582&lang=jp)
