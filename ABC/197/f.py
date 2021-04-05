@@ -1,7 +1,10 @@
-from collections import defaultdict,deque
+from collections import defaultdict, deque
 from heapq import heappush, heappop
 from bisect import bisect_left, bisect_right
-import sys, random, itertools, math
+import sys
+import random
+import itertools
+import math
 sys.setrecursionlimit(10**5)
 input = sys.stdin.readline
 sqrt = math.sqrt
@@ -23,17 +26,48 @@ def SR(n): return [S() for _ in range(n)]
 def LSR(n): return [LS() for _ in range(n)]
 
 # solve
+
+
 def solve():
     n, m = LI()
-    abc = LIR(m)
+    abc = LSR(m)
     edg = [[] for _ in range(n)]
     for a, b, c in abc:
-        edg[a].append((b,c))
-        edg[b].append((a,c))
+        a = int(a) - 1
+        b = int(b) - 1
+        edg[a].append((b, c))
+        if a == b:
+            continue
+        edg[b].append((a, c))
+    check = defaultdict(int)
+    check[(0, n - 1)] = 1
+    check[(n - 1, 0)] = 1
     q = deque()
-    q.append((0, n - 1))
+    ans_ = inf
+    q.append((0, n - 1, 0))
     while q:
-        
+        s, e, ans = q.popleft()
+        tmp = defaultdict(list)
+        for ei, c in edg[s]:
+            tmp[c].append(ei)
+        for si, c in edg[e]:
+            if tmp[c]:
+                for ti in tmp[c]:
+                    if si == s and ti == e:
+                        ans_ = min(ans_, ans + 1)
+                        return
+                    if si == ti:
+                        ans_ = min(ans_, ans + 2)
+                        return
+                    if check[(si, ti)]:
+                        continue
+                    check[(si, ti)] = 1
+                    check[(ti, si)] = 1
+                    q.append((ti, si, ans + 2))
+    if ans_ == inf:
+        print(-1)
+    else:
+        print(ans_)
     return
 
 
