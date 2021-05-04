@@ -38,25 +38,29 @@ def solve():
             i += 1
         else:
             xx.append(mask)
+    tt=[]
     for x in xx:
+        y=x
         for k in t:
-            x ^=k*(x^k<x)
-        if x: t.append(x)
+            if x^k<x:
+                x^=k
+        if x: 
+            t.append(x)
+            tt.append(y)
     ans = []
     ch = defaultdict(int)
     q = deque([0])
     ch[0] = 1
+    if len(t) != n.bit_length()-1:
+        print(-1)
+        return
     while q:
         p = q.pop()
-        for k in t:
+        for k in tt:
             if ch[p^k] == 0:
                 q.appendleft(p^k)
                 ans.append((p,p^k))
                 ch[p^k] = 1
-    for i in range(n):
-        if ch[i] == 0:
-            print(-1)
-            return
     for ai in ans:
         print(*ai)
     return
