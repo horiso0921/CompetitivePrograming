@@ -27,12 +27,16 @@ inf = float('INF')
 #solve
 def C():
     n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
-    print(ans)
+    w = IR(n)
+    b = inf
+    ans = []
+    for wi in w:
+        for i in range(len(ans)):
+            if ans[i] >= wi:
+                ans[i] = wi
+                break
+        else:
+            ans.append(wi)
+    print(len(ans))
+    return
+

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,10 +25,13 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
+def A():
+    a, k = LI()
+    nityo = 2 * 10 ** 12
+    if k != 0:
+        x = (k / (a * k + 1)) * (nityo + 1 / k)
+        print(math.ceil(math.log(x, k+1)))
+    else:
+        print(nityo-a)
     return
 
-
-#main
-if __name__ == '__main__':
-    solve()

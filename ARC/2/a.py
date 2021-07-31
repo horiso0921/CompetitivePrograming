@@ -25,14 +25,17 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
-    n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
-    print(ans)
+def A():
+    y = II()
+    if y % 400 == 0:
+        print("YES")
+        return
+    if y % 100 == 0:
+        print("NO")
+        return
+    if y % 4 == 0:
+        print("YES")
+        return
+    print("NO")
+    return
+

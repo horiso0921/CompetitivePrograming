@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -11,8 +12,8 @@ def LF(): return list(map(float, input().split()))
 def LI_(): return list(map(lambda x: int(x)-1, input().split()))
 def II(): return int(input())
 def IF(): return float(input())
-def S(): return input().rstrip()
-def LS(): return S().split()
+def LS(): return list(map(list, input().split()))
+def S(): return list(input().rstrip())
 def IR(n): return [II() for _ in range(n)]
 def LIR(n): return [LI() for _ in range(n)]
 def FR(n): return [IF() for _ in range(n)]
@@ -21,17 +22,17 @@ def LIR_(n): return [LI_() for _ in range(n)]
 def SR(n): return [S() for _ in range(n)]
 def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
-inf = 1e10
+inf = float('INF')
 
 #solve
-def solve():
+def B():
     n = II()
-    s = SR(n)
-    s.sort(key = lambda x: x[::-1])
-    print("\n".join(s))
+    ss = []
+    for _ in range(n):
+        s = input().rstrip()[::-1]
+        ss.append(s)
+    ss.sort()
+    for si in ss:
+        print(si[::-1])
     return
 
-
-#main
-if __name__ == '__main__':
-    solve()

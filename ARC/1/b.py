@@ -25,14 +25,21 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
-    n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
+def B():
+    a, b = LI()
     ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
+    while a != b:
+        if a > b:
+            a = a ^ b
+            b = a ^ b
+            a = a ^ b
+        ab = b - a
+        if ab >= 8:
+            a += 10
+        elif ab >= 3:
+            a += 5
+        else:
+            a += 1
+        ans += 1
     print(ans)
+

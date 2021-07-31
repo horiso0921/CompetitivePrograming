@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,10 +25,33 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
+def C():
+    n = II()
+    v = LI()
+    d1 = defaultdict(int)
+    d0 = defaultdict(int)
+    for num, a in enumerate(v):
+        if num % 2:
+            d1[a] += 1
+        else:
+            d0[a] += 1
+    A = list(d0.items())
+    A.sort(key = lambda x: x[1], reverse = True)
+    A = A[:2]
+    A.append((0,0))
+    B = list(d1.items())
+    B.sort(key = lambda x: x[1], reverse = True)
+    B = B[:2]
+    B.append((0, 0))
+    a = n // 2
+    b = (n + 1) // 2
+    if A[0][0] == B[0][0]:
+        ans = min(a - A[0][1] + b - B[1][1], a - A[1][1] + b - B[0][1])
+        print(ans)
+    else:
+        #print(A,B)
+        A = A[0][1]
+        B = B[0][1]
+        print(a+b-A-B)
     return
 
-
-#main
-if __name__ == '__main__':
-    solve()

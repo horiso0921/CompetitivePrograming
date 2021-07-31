@@ -25,14 +25,22 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
+def A():
     n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
-    print(ans)
+    b = LI()
+    b = b[::-1]
+    ans = deque([])
+    while len(b) != 0:
+        for num, i in enumerate(b):
+            if n - num == i:
+                ans.appendleft(i)
+                n -= 1
+                del b[num]
+                break
+        else:
+            print(-1)
+            return
+    for i in ans:
+        print(i)
+    return
+

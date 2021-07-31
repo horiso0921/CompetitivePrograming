@@ -25,14 +25,26 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
-    n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
-    print(ans)
+def A():
+    n, a, b, c, d = LI_()
+    s = S()
+    flg = False
+    for i in range(a, c-1):
+        if s[i] == "#" and s[i + 1] == "#":
+            print("No")
+            return
+    for i in range(b, d-1):
+        if s[i] == "#" and s[i + 1] == "#":
+            print("No")
+            return
+    if c > d:
+        for i in range(b,d+1):
+            if s[i] == "." and s[i + 1] == "." and s[i - 1] == ".":
+                flg = True
+                break
+        if not flg:
+            print("No")
+            return
+    print("Yes")
+    return
+

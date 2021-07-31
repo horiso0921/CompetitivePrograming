@@ -1,7 +1,8 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
-from bisect import *
+from bisect import bisect_left, bisect_right
 import sys, random, itertools, math
 sys.setrecursionlimit(10**5)
 input = sys.stdin.readline
@@ -23,7 +24,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+#solve
 def A():
     e = LI()
     b = II()
@@ -44,42 +45,3 @@ def A():
     print(ans[ansi])
     return
 
-#B
-def B():
-    n, l = LI()
-    ans = [i for i in range(n)]
-    for _ in range(l):
-        s = input().rstrip()
-        for i in range(n - 1):
-            if s[2 * i + 1] == "-":
-                ans[i], ans[i + 1] = ans[i + 1], ans[i]
-    s = input().rstrip()
-    for i in range(n):
-        if s[2 * i] == "o":
-            print(ans[i]+1)
-            return
-    return
-
-#C
-def C():
-    n = II()
-    w = IR(n)
-    b = inf
-    ans = []
-    for wi in w:
-        for i in range(len(ans)):
-            if ans[i] >= wi:
-                ans[i] = wi
-                break
-        else:
-            ans.append(wi)
-    print(len(ans))
-    return
-
-#D
-def D():
-    return
-
-#Solve
-if __name__ == '__main__':
-    C()

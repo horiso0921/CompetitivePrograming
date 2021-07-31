@@ -25,14 +25,12 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
+def A():
     n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
-    print(ans)
+    r = input().rstrip()
+    d = {"A": "4", "B": "3", "C": "2", "D": "1", "F": "0"}
+    for key, value in d.items():
+        r = r.replace(key, value)
+    print(sum(list(map(int, list(r)))) / n)
+    return
+

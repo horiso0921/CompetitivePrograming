@@ -1,12 +1,12 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
-import sys, math, bisect, random, itertools
+from bisect import bisect_left, bisect_right
+import sys, random, itertools, math
 sys.setrecursionlimit(10**5)
 input = sys.stdin.readline
 sqrt = math.sqrt
-bisect_left = bisect.bisect_left
-bisect_right = bisect.bisect_right
 def LI(): return list(map(int, input().split()))
 def LF(): return list(map(float, input().split()))
 def LI_(): return list(map(lambda x: int(x)-1, input().split()))
@@ -24,7 +24,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+#solve
 def A(s):
 
     # たぶん嘘解法です
@@ -59,28 +59,3 @@ def A(s):
     print(0, 0, v, 1, y, x)
     return
 
-#B
-def B():
-    return
-
-#C
-def C():
-    return
-
-#D
-def D():
-    return
-
-#E
-def E():
-    return
-
-#F
-def F():
-    return
-
-
-
-#Solve
-if __name__ == '__main__':
-    A(II())

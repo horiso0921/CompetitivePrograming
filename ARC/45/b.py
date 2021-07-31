@@ -29,7 +29,7 @@ def solve():
         #set_val
         for i in range(n):
             seg_min[i+num_min-1] = init_min_val[i]
-        #built
+        # Built
         for i in range(num_min-2, -1, -1):
             seg_min[i] = min(seg_min[2*i+1], seg_min[2*i+2])
 

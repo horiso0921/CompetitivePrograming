@@ -25,14 +25,30 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def C():
-    n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
+def A():
+    s = S()
+    k = II()
     ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
+    lis = []
+    i = 0
+    tmp = 1
+    while len(s) > i + 1:
+        if s[i] == s[i + 1]:
+            tmp += 1
+        else:
+            lis.append((s[i], tmp))
+            tmp = 1
+        i += 1
+    lis.append((s[i], tmp))
+    if lis[0][0] == lis[-1][0]:
+        if len(lis) == 1:
+            ans += k * lis[0][1] // 2
+            print(ans)
+            return
+        ans -= (lis[0][1] // 2 + lis[-1][1] // 2) * (k - 1)
+        ans += (lis[0][1] + lis[-1][1]) // 2 * (k - 1)
+    for _, b in lis:
+        ans += b // 2 * k
     print(ans)
+    return
+

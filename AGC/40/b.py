@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -21,75 +22,38 @@ def LIR_(n): return [LI_() for _ in range(n)]
 def SR(n): return [S() for _ in range(n)]
 def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
-inf = 1e10
-
-class SlidingWindowAggregation:
-    """ https://scrapbox.io/data-structures/Sliding_Window_Aggregation """
-    
-    def __init__(self, f=sum):
-        self.f = f
-        self.front_stack = deque()
-        self.back_stack = deque()
-    
-    def empty(self):
-        return self.front_stack or self.back_stack
-
-    def __len__(self):
-        return len(self.front_stack) + len(self.back_stack)
-
-    def fold_all(self):
-        try:
-            assert self.empty(), "Both stack is empty"
-            if not self.front_stack:
-                return self.back_stack[-1][1]
-            elif not self.back_stack:
-                return self.front_stack[-1][1]
-            else:
-                return self.f(self.front_stack[-1][1], self.back_stack[-1][1])
-        except AssertionError as err:
-            print("AssertionError :", err)
-
-    def push(self, x):
-        if not self.back_stack:
-            self.back_stack.append((x, x))
-        else:
-            tmp = self.f(self.back_stack[-1][1], x)
-            self.back_stack.append((x, tmp))
-
-    def popleft(self):
-        try:
-            assert self.empty(), "Both stack is empty"
-            if not self.front_stack:
-                x,fx = self.back_stack.pop()
-                self.front_stack.append((x, x))
-                while self.back_stack:
-                    x, fx = self.back_stack.pop()
-                    fx = self.f(x, self.front_stack[-1][1])
-                    self.front_stack.append((x, fx))
-            self.front_stack.pop()
-
-        except AssertionError as err:
-            print("AssertionError :", err)
+inf = float('INF')
 
 #solve
-def solve():
+def B():
     n = II()
-    lr = LIR(n)
-    maxl = max([l for l, r in lr])
-    minr = min([r for l, r in lr])
-    ans = max(minr - maxl + 1, 0) + max([r - l + 1 for l, r in lr])
-    lisminr = SlidingWindowAggregation(min)
-    lr.sort()
-    for _, r in lr:
-        lisminr.push(r)
+    LR = LIR(n)
+    LR.sort(key=lambda x: (x[1] - x[0], -x[1]))
+    ans = [[LR[0][0], LR[0][1] + 1], [LR[1][0], LR[1][1] + 1]]
+    for i in range(2, n):
+        l, r = LR[i]
+        r += 1
+        a12 = min(ans[0][1], ans[1][1]) - max(ans[0][0], ans[1][0])
+        a12 = (a12 > 0) * a12 + r - l
+        a12 = (a12 > 0) * a12
+        a1lr = min(ans[0][1], r) - max(ans[0][0], l)
+        a1lr = (a1lr > 0) * a1lr + ans[1][1] - ans[1][0]
+        a1lr = (a1lr > 0) * a1lr
+        a2lr = min(ans[1][1], r) - max(ans[1][0], l)
+        a2lr = (a2lr > 0) * a2lr + ans[0][1] - ans[0][0]
+        a2lr = (a2lr > 0) * a2lr
+        res = [(a12, 0), (a1lr, 1), (a2lr, 2)]
+        res.sort(reverse=True)
+        if res[0][1] == 0:
+            ans[0] = [max(ans[0][0], ans[1][0]), min(ans[0][1], ans[1][1])]
+            ans[1] = [l, r]
+        elif res[0][1] == 1:
+            ans[0] = [max(ans[0][0], l), min(ans[0][1], r)]
+        else:
+            ans[1] = [max(ans[1][0], l), min(ans[1][1], r)]
+    a = ans[0][1] - ans[0][0]
+    b = ans[1][1] - ans[1][0]
+    print((a > 0) * a + (b > 0) * b)
 
-    for l, r in lr[:-1]:
-        lisminr.popleft()
-        ans = max(ans, max(minr - l + 1, 0) + max(lisminr.fold_all() - maxl + 1, 0))
-    print(ans)
     return
 
-
-#main
-if __name__ == '__main__':
-    solve()

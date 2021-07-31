@@ -27,12 +27,20 @@ inf = float('INF')
 #solve
 def C():
     n = II()
-    A = LI()
-    for i in range(n):
-        A[i] = A[i] - i - 1
-    import statistics
-    a = round(statistics.median(A))
-    ans = 0
-    for i in range(n):
-        ans += abs(A[i] - a)
+    c = S()
+    short = itertools.product(["A", "B", "X", "Y"], repeat=2)
+    short_comb = itertools.combinations(short, 2)
+    ans = inf
+    for sc in short_comb:
+        i = 0
+        tmp = 0
+        while i < n - 1:
+            if (c[i], c[i + 1]) in sc:
+                i += 1
+            i += 1
+            tmp += 1
+        tmp += i == n - 1
+        ans = min(ans, tmp)
     print(ans)
+    return
+
