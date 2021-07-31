@@ -28,7 +28,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n = II()
     p = LI()
@@ -44,7 +44,7 @@ def A():
     print(dp[n])
     return
 
-#B
+# B
 def B():
     def yaku(n):
         res = 0
@@ -70,11 +70,11 @@ def B():
         print(ya[n])
     return
 
-#C
+# C
 def C():
     return
 
-#D
+# D
 def D():
     a, b = LI()
     if b % a == 0 or a == 2:
@@ -87,7 +87,7 @@ def D():
         else:
             print(-1)
 
-#E
+# E
 def E():
     n, s, t = LI()
     dist = defaultdict(lambda: inf)
@@ -125,7 +125,7 @@ def E():
 
     return
 
-#F
+# F
 def F():
     return
 

@@ -23,7 +23,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     m, d = LI()
     ans = 0
@@ -36,7 +36,7 @@ def A():
     print(ans)
     return
 
-#B
+# B
 def B():
     n, l = LI()
     a = LI()
@@ -64,7 +64,7 @@ def B():
     print(ans % mod)
     return
 
-#C
+# C
 def C():
     n = II()
     s = S()
@@ -90,7 +90,7 @@ def C():
     print(ans * math.factorial(n) % mod)
     return
 
-#D
+# D
 def D():
     n = II()
     ans = [[] for i in range(n - 1)]
@@ -105,11 +105,11 @@ def D():
         print(" ".join(a))
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -23,34 +24,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-def combination_mod(n, k, mod):
-    """ power_funcを用いて(nCk) mod p を求める """ 
-    """ nCk = n!/((n-k)!k!)を使用 """
-
-    from math import factorial
-    if n < 0 or k < 0 or n < k: return 0
-    if n == 0 or k == 0: return 1
-    a = fact[n] 
-    b = fact[k]
-    c = fact[n - k]
-    return (a * pow(b, mod - 2, mod) * pow(c, mod - 2, mod)) % mod
-    
-
-
 #solve
-def solve():
-    x, y = LI()
-    x, y = (2 * y - x) / 3, (2 * x - y) / 3
-    if x.is_integer() and y.is_integer():
-        print(combination_mod(int(x + y), int(x), mod))
-    else:
-        print(0)
+def D():
     return
 
-
-#main
-if __name__ == '__main__':
-    fact = [1] * (10 ** 6+1)
-    for i in range(1, 10 ** 6):
-        fact[i + 1] *= (fact[i] * (i+1)) % mod
-    solve()

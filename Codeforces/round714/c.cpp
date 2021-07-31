@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-#define N 200000
+# Define N 200000
 int main(int argc, char const *argv[])
 {
     long int mod = 1000000007;

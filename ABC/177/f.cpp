@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define ALL(obj) (obj).begin(),(obj).end()
+# Define ALL(obj) (obj).begin(),(obj).end()
 using namespace std;
 using ll = long long;
 template <class T> void chmax(T& a, const T b){a=max(a,b);}

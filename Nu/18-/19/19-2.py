@@ -1,11 +1,11 @@
-#A
+# A
 """
 n,k =map(int, input().split())
 
 print(k * (k - 1)**(n - 1)) 
 """
 
-#B
+# B
 
 import math
 
@@ -27,7 +27,7 @@ for i in range(1, n + m):
         sum += max(yoko1, yoko2)
 print(sum)
 
-#C
+# C
 """
 n = int(input())
 an = list(map(int, input().split()))
@@ -36,7 +36,7 @@ for i in range(n):
     ans += an[i] - 1
 print(ans)
 """
-#D
+# D
 """
 import itertools
 s = input()

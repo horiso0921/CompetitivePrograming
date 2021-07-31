@@ -23,7 +23,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n, m, R = LI()
     r = LI_()
@@ -55,7 +55,7 @@ def A():
 
     return
 
-#B
+# B
 def B():
     n, m = LI()
     time = [[inf] * n for i in range(n)]
@@ -80,7 +80,7 @@ def B():
     print(ans)
     return
 
-#C
+# C
 def C():
     h, w, t = LI()
     s = SR(h)
@@ -128,7 +128,7 @@ def C():
     print(ok)
     return
 
-#D
+# D
 def D():
     n = II()
     a, b = LI_()
@@ -169,7 +169,7 @@ def D():
     print(ans)
     return
 
-#E
+# E
 def E():
     x = S()
     f = True
@@ -196,7 +196,7 @@ def E():
         print("NO")
     return
 
-#F
+# F
 def F():
     s = S()
     n = II()

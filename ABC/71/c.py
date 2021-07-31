@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,26 +25,20 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
+def C():
     n = II()
     a = LI()
-    d = defaultdict(int)
-    for ai in a:
-        d[ai] += 1
-    lis = list(d.items())
+    i = 1
+    a.sort(reverse=True)
     ans = []
-    for i,j in lis:
-        for _ in range(j // 2):
-            ans.append(i)
-    ans.sort(reverse=True)
-    if len(ans) < 2:
-        print(0)
-    else:
-        print(ans[0]*ans[1])
+    while i < n:
+        if a[i] == a[i - 1]:
+            ans.append(a[i])
+            if len(ans) == 2:
+                print(ans[0] * ans[1])
+                return
+            i += 2
+        else:
+            i += 1
+    print(0)
 
-    return
-
-
-#main
-if __name__ == '__main__':
-    solve()

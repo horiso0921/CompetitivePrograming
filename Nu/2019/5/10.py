@@ -28,7 +28,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     s = S()
     i = 0
@@ -65,7 +65,7 @@ def A():
 
     return
 
-#B
+# B
 def B():
     def gcd(x, y):
         x, y = max(x, y), min(x, y)
@@ -135,19 +135,19 @@ def B():
             
     return
 
-#C
+# C
 def C():
     return
 
-#D
+# D
 def D():
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

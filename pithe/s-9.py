@@ -23,7 +23,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n = II()
     si = [int(i) for i in input().split()]

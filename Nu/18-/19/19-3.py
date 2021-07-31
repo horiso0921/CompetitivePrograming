@@ -1,4 +1,4 @@
-#a
+# A
 """
 import math
 a, b = map(str, input().split())
@@ -9,7 +9,7 @@ else:
     print("No")
 """
 
-#b
+# B
 """
 ans = ["Positive","Negative"]
 a, b = map(int, input().split())
@@ -21,7 +21,7 @@ else:
     print(ans[(b-a)%2-1])
 """
 
-#C
+# C
 """
 import itertools
 n = int(input())
@@ -42,7 +42,7 @@ for i in a:
 print(ans)
 """
 
-#D
+# D
 """
 n = int(input())
 D = [list(map(int, input().split())) for _ in range(n)]
@@ -56,7 +56,7 @@ for _ in p:
     print(ans[p])
 """
 
-#E
+# E
 """
 s = input()
 bf = s[0]
@@ -68,7 +68,7 @@ for i in range(1,len(s)):
 print(ans)
 """
 
-#F
+# F
 """
 n = int(input())
 ta = [list(map(int, input().split())) for _ in range(n)]

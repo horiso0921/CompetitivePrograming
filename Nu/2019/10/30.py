@@ -23,23 +23,23 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     return
 
-#B
+# B
 def B():
     return
 
-#C
+# C
 def C():
     return
 
-#D
+# D
 def D():
     return
 
-#E
+# E
 def E():
     b = LIR(2)
     c = LIR(3)
@@ -106,7 +106,7 @@ def E():
     print((score - x) // 2)
     return
 
-#F
+# F
 def F():
     return
 

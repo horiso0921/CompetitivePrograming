@@ -28,13 +28,13 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 10**6+3
 inf = float('INF')
 
-#A
+# A
 def A():
     n = II()
     print((n-2)*180)
     return
 
-#B
+# B
 def B():
     b = S()
     kati = b.count("o")
@@ -45,7 +45,7 @@ def B():
         print("NO")
     return
 
-#C
+# C
 def C():
     n, a, b, c = LI()
     def Moth(q, n):
@@ -59,7 +59,7 @@ def C():
 
     return
 
-#D
+# D
 def D():
     n = II()
     ab = LIR_(n-1)
@@ -97,7 +97,7 @@ def D():
 
     return
 
-#E
+# E
 def E():
     q = II()
     for _ in range(q):
@@ -109,7 +109,7 @@ def E():
         print(ans)
     return
 
-#F
+# F
 def F():
     return
 

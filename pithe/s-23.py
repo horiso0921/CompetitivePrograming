@@ -23,7 +23,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n, m, Q = LI()
     edg = [[0] * n for i in range(n)]

@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,21 +25,14 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
-    s = list(set(S()))
-    lis = [chr(i) for i in range(ord("a"), ord("z") + 1)]
-    for si in s:
-        if si in lis:
-            lis.remove(si)
-        # print(si,lis)
-    lis.sort()
-    if lis == []:
+def B():
+    s = S()
+    s = set(s)
+    for i in s:
+        alp.remove(i)
+    if len(alp) == 0:
         print("None")
     else:
-        print(lis[0])
+        print(alp[0])
     return
 
-
-#main
-if __name__ == '__main__':
-    solve()

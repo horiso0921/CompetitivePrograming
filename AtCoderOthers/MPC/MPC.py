@@ -26,7 +26,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     s = S()
     ans = "MUJIN"
@@ -41,7 +41,7 @@ def A():
 
     return
 
-#B
+# B
 def B():
     a = II()
     s = S()
@@ -59,7 +59,7 @@ def B():
     print("No")
     return
 
-#C 
+# C 
 def C_():
     n, m = LI()
     s = SR(n)
@@ -101,7 +101,7 @@ def C_():
     print(ans)
 
 
-#D
+# D
 def D():
     n,m = LI()
     dp = [[None for i in range(1000)] for k in range(1000)]
@@ -146,11 +146,11 @@ def D():
     print(ans)
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

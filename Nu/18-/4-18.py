@@ -28,19 +28,19 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n, a, b = LI()
     print(min(n*a,b))
     return
 
-#B
+# B
 def B():
     a = S()
     print(a.count("1"))
     return
 
-#C
+# C
 def C():
     n = II()
     a = list(str(n))
@@ -51,7 +51,7 @@ def C():
         print("No")
     return
 
-#D
+# D
 def D():
     n = II()
     a = LI()
@@ -66,7 +66,7 @@ def D():
     print(ans)
     return
 
-#E
+# E
 def E():
     n = II()
     f = LIR(n)
@@ -75,7 +75,7 @@ def E():
     
     return
 
-#F
+# F
 def F():
     n, k = LI()
     a = LI()

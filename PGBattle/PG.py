@@ -23,7 +23,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     n = II()
     a = LI()
@@ -34,7 +34,7 @@ def A():
     print(ans)
     return
 
-#B
+# B
 def B():
     n = II()
     s = S()
@@ -119,7 +119,7 @@ def B():
                     R -= 2
     return
 
-#C
+# C
 def C():
     n = II()
     dp = [[0] * 3001 for i in range(3001)]
@@ -138,7 +138,7 @@ def C():
         print(tmp)
     return
 
-#D
+# D
 def D():
     n = II()
     a = LI()
@@ -156,11 +156,11 @@ def D():
 
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

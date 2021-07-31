@@ -12,7 +12,7 @@ using ll = long long;
 // - l<=i<r について、 A_i の値に x を加える
 // - l<=i<r について、 A_i の値を x に更新
 
-#define N 200003
+# Define N 200003
 
 class SegmentTree {
   const ll inf = 1e18;

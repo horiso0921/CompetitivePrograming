@@ -26,7 +26,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     s = S()
     if s[0] == s[2] and s[1] == s[3]:
@@ -35,7 +35,7 @@ def A():
         print("No")
     return
 
-#B
+# B
 def B():
     s = S()
     ans = 1
@@ -68,19 +68,19 @@ def B():
     print(ans)
     return
 
-#C
+# C
 def C():
     return
 
-#D
+# D
 def D():
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

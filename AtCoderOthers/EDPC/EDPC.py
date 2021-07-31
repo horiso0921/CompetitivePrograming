@@ -25,7 +25,7 @@ def SR(n): return [S() for _ in range(n)]
 def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 
-#A
+# A
 def A():
     """
     N個の足場があります。足場には1,2,…,Nと番号が振られています。 
@@ -49,7 +49,7 @@ def A():
     print(dp[n-1])
     return
 
-#B
+# B
 def B():
     n, K = LI()
     h = LI()
@@ -63,7 +63,7 @@ def B():
     print(dp[n-1])
     return
 
-#C
+# C
 def C():
     n = II()
     abc = LIR(n)
@@ -80,7 +80,7 @@ def C():
 
     return
 
-#D
+# D
 def D():
     """N個の品物があります。 品物には 1,2,…,Nと番号が振られています。 
     各 i (1≤i≤N) について、品物i の重さはwi で、価値はvi です。
@@ -107,7 +107,7 @@ def D():
     
     return
 
-#E
+# E
 def E():
     """N個の品物があります。 品物には 1,2,…,Nと番号が振られています。 
     各 i (1≤i≤N) について、品物i の重さはwi で、価値はvi です。
@@ -138,7 +138,7 @@ def E():
 
     return
 
-#F
+# F
 def F():
     s = S()
     s = [ord(c) - 97 for c in s]

@@ -28,7 +28,7 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     while True:
         n = II()
@@ -40,7 +40,7 @@ def A():
             
     return
 
-#B
+# B
 def B():
     move = [[1, 0], [-1, 0], [0, 1], [0, -1]]
     while True:
@@ -76,7 +76,7 @@ def B():
             print(0)
     return
 
-#C
+# C
 def C():
     while 1:
         r, n = LI()
@@ -97,7 +97,7 @@ def C():
         print(ans)
     return
 
-#D
+# D
 def D():
     fact = [1 for i in range(1000001)]
     fact[1] = 0
@@ -120,11 +120,11 @@ def D():
     print(DFS(10**4))
     return
 
-#E
+# E
 def E():
     return
 
-#F
+# F
 def F():
     return
 

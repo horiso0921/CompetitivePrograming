@@ -1,4 +1,4 @@
-#B
+# B
 """
 def find(x):
     while table[x] >= 0:
@@ -40,7 +40,7 @@ else:
     print("YES")
 """
 
-#C
+# C
 k, a, b = map(int, input().split())
 
 if a + 1 >= b:

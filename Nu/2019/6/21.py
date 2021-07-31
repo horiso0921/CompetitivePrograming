@@ -28,23 +28,23 @@ def LSR(n): return [LS() for _ in range(n)]
 mod = 1000000007
 inf = float('INF')
 
-#A
+# A
 def A():
     return
 
-#B
+# B
 def B():
     return
 
-#C
+# C
 def C():
     return
 
-#D
+# D
 def D():
     return
 
-#E
+# E
 def E():
     move = [[1, 0], [-1, 0], [0, 1], [0, -1]]
     while 1:
@@ -98,7 +98,7 @@ def E():
             print("No")
     return
 
-#F
+# F
 def F():
     return
 
