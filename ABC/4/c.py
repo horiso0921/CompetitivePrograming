@@ -25,6 +25,18 @@ inf = float('INF')
 
 #solve
 def solve():
+    n = int(input())
+    n = n % 30
+    ans = ["123456"]
+    for i in range(30):
+        ansb = list(ans[i])
+        ansb[i % 5] = ans[i][i % 5 + 1]
+        ansb[i % 5 + 1] = ans[i][i % 5]
+        ansc = ""
+        for k in range(6):
+            ansc += ansb[k]
+        ans.append(ansc)
+    print(ans[n])
     return
 
 

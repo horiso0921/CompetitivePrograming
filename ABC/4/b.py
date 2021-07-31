@@ -25,6 +25,21 @@ inf = float('INF')
 
 #solve
 def solve():
+    a1 = list(map(str, input().split()))
+    a2 = list(map(str, input().split()))
+    a3 = list(map(str, input().split()))
+    a4 = list(map(str, input().split()))
+
+    ans = []
+    ans.append(a1)
+    ans.append(a2)
+    ans.append(a3)
+    ans.append(a4)
+
+    for i in range(3,-1,-1):
+        for k in range(3,-1,-1):
+            print(ans[i][k], end=" ")
+        print()
     return
 
 
