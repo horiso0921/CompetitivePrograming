@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,20 +25,26 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
-    n = II()
-    ans = 0
-    c = IR(n)
-    dp = [inf for i in range(n+1)]
-    dp[0] = -1*inf
-    for i in c:
-        a = bisect_left(dp, i)
-        dp[a] = i
-    a = dp.count(inf)
-    print(n-len(dp)+1+a)
-    return
+n = int(input())
+feild = [list(map(int, input().split())) for i in range(n)]
+num_tenin = int(input())
+tenin = [int(input()) for i in range(num_tenin)]
 
+ans = [0 for i in range(n ** 2 + 1)]
 
-#main
-if __name__ == '__main__':
-    solve()
+dp = [[0 for i in range(n+1)] for k in range(n+1)]
+for i in range(n):
+    for k in range(n):
+        dp[k][i] = dp[k - 1][i] + dp[k][i - 1] - dp[k - 1][i - 1] + feild[k][i]
+        ans[(k+1)*(i+1)] = max(ans[(k+1)*(i+1)], dp[k][i])
+
+for tate in range(n):
+    for yoko in range(n):
+        for tate_haba in range(1, n - tate + 1):
+            for yoko_haba in range(1, n - yoko + 1):
+                bf = dp[tate + tate_haba - 1][yoko + yoko_haba - 1] - dp[tate - 1][yoko + yoko_haba - 1] - dp[tate + tate_haba - 1][yoko - 1] + dp[tate - 1][yoko - 1]
+                ans[yoko_haba * tate_haba] = max(ans[tate_haba * yoko_haba], bf)
+                for i in range(1, n ** 2 + 1):
+                    ans[i] = max(ans[i], ans[i - 1])
+for ten in tenin:
+    print(ans[ten])

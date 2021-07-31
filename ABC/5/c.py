@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,23 +25,41 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
-    n, m = LI()
-    a = m % 2
-    for y in range(a, n, 2):
-        bm = m
-        bm -= 3 * y
-        bm //= 2
-        z = bm - (n - y)
-        x = n - y - z
-        if z >= 0 and x >= 0 and y >= 0:
-            print(x,y,z)
-            return
-    print(-1,-1,-1)
-    return
-    return
+t = int(input())
+n = int(input())
+ab = list(map(int, input().split()))
+m = int(input())
+bb = list(map(int, input().split()))
+import queue
+ai = queue.Queue()
+for i in range(n):
+    ai.put(ab[i])
+bi = queue.Queue()
+for i in range(m):
+    bi.put(bb[i])
+hito = bi.get()
+
+while not ai.empty():
+    
+    if m > n:
+        print("no")
+        break
+
+    tako = ai.get()
+    
+
+    if tako > hito:
+        print("no")
+        break
+    
+    elif tako + t >= hito:
+        if bi.empty():
+            print("yes")
+            break
+        hito = bi.get()
+
+else:
+    print("no")
 
 
-#main
-if __name__ == '__main__':
-    solve()
+

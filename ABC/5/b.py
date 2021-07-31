@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,10 +25,8 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
-    return
+n = int(input())
+ans = [int(input()) for _ in range(n)]
+print(min(ans))
 
 
-#main
-if __name__ == '__main__':
-    solve()

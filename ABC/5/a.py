@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 from collections import defaultdict,deque
 from heapq import heappush, heappop
@@ -24,10 +25,7 @@ mod = 1000000007
 inf = float('INF')
 
 #solve
-def solve():
-    return
+x, y = map(int, input().split())
+print(y//x)
 
 
-#main
-if __name__ == '__main__':
-    solve()
