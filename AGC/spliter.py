@@ -31,51 +31,60 @@ inf = float('INF')
 #solve
 """
 
-for i in range(200):
-    try:
-        with open(str(i)+".py", "r", encoding="utf-8") as f:
-            d = defaultdict(list)
-            ch = "N"
-            for line in f:
-                if "# A" in line:
-                    ch = "A"
-                    d[ch].append(INIT)
-                elif "# B" in line:
-                    ch = "B"
-                    d[ch].append(INIT)
-                elif "# C" in line:
-                    ch = "C"
-                    d[ch].append(INIT)
-                elif "# D" in line:
-                    ch = "D"
-                    d[ch].append(INIT)
-                elif "# E" in line:
-                    ch = "E"
-                    d[ch].append(INIT)
-                elif "# F" in line:
-                    ch = "F"
-                    d[ch].append(INIT)
-                elif "#Solve" in line:
-                    ch = "N"
-                elif "#G" in line:
-                    ch = "N"
-                else:
-                    if ch != "N":
-                        d[ch].append(line)
-            os.makedirs(str(i), exist_ok=True)
-            for k, v in d.items():
-                with open(str(i)+"/"+k.lower()+".py", "w", encoding="utf-8") as o:
-                    # print("".join(v))
-                    c = "".join(v)
-                    c = re.sub(r"#solve\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "#solve\n\\1", c)
-                    c = re.sub(r"# A\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# A\n\\1", c)
-                    c = re.sub(r"# B\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# B\n\\1", c)
-                    c = re.sub(r"# C\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# C\n\\1", c)
-                    c = re.sub(r"# D\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# D\n\\1", c)
-                    c = re.sub(r"# E\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# E\n\\1", c)
-                    c = re.sub(r"# F\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# F\n\\1", c)
-                    o.write(c)
 
+def exstract_each_solver_from_one_file():
+    for i in range(200):
+        try:
+            with open(str(i)+".py", "r", encoding="utf-8") as f:
+                d = defaultdict(list)
+                ch = "N"
+                for line in f:
+                    if "# A" in line:
+                        ch = "A"
+                        d[ch].append(INIT)
+                    elif "# B" in line:
+                        ch = "B"
+                        d[ch].append(INIT)
+                    elif "# C" in line:
+                        ch = "C"
+                        d[ch].append(INIT)
+                    elif "# D" in line:
+                        ch = "D"
+                        d[ch].append(INIT)
+                    elif "# E" in line:
+                        ch = "E"
+                        d[ch].append(INIT)
+                    elif "# F" in line:
+                        ch = "F"
+                        d[ch].append(INIT)
+                    elif "#Solve" in line:
+                        ch = "N"
+                    elif "#G" in line:
+                        ch = "N"
+                    else:
+                        if ch != "N":
+                            d[ch].append(line)
+                os.makedirs(str(i), exist_ok=True)
+                for k, v in d.items():
+                    with open(str(i)+"/"+k.lower()+".py", "w", encoding="utf-8") as o:
+                        # print("".join(v))
+                        c = "".join(v)
+                        c = re.sub(r"#solve\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "#solve\n\\1", c)
+                        c = re.sub(r"# A\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# A\n\\1", c)
+                        c = re.sub(r"# B\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# B\n\\1", c)
+                        c = re.sub(r"# C\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# C\n\\1", c)
+                        c = re.sub(r"# D\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# D\n\\1", c)
+                        c = re.sub(r"# E\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# E\n\\1", c)
+                        c = re.sub(r"# F\n+\"\"\"\n(([^\n]*\n)*)\"\"\"", "# F\n\\1", c)
+                        o.write(c)
+
+        except Exception as e:
+            print(e)
+            pass
+
+for i in range(1,100):
+    try:
+        os.rename("./" + str(i), f"./{i:03}")
     except Exception as e:
         print(e)
         pass
