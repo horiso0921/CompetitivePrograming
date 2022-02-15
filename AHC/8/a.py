@@ -7,7 +7,6 @@ import sys
 import itertools
 import math
 
-from attr import field
 sys.setrecursionlimit(10**5)
 input = sys.stdin.readline
 sqrt = math.sqrt
@@ -29,13 +28,16 @@ def LSR(n): return [LS() for _ in range(n)]
 
 MOD = 1000000007
 INF = 1e10
-PET = 2
+OBST = 1
+PET = 5
 HUMAN = 3
-VACANT = 1
-num_to_UDLR = ["U", "D", "L", "R"]
-UDLR_to_movement = {"U": (0, -1), "D": (0, 1), "L": (-1, 0), "R": (1, 0)}
-num_to_udlr = ["u", "d", "l", "r"]
-udlr_to_movement = {"u": (0, -1), "d": (0, 1), "l": (-1, 0), "r": (1, 0)}
+VACANT = 2
+ADJACENT = [(i, j) for i in range(-1, 2)
+            for j in range(-1, 2) if i * j == 0 and i != j]
+num_to_UDLR = {(-1, 0): "L", (0, -1): "U", (0, 1): "D", (1, 0): "R"}
+UDLR_to_movement = {"U": (0, -1), "D": (0, 1), "L": (-1, 0), "R": (1, 0), ".": (0, 0)}
+num_to_udlr = {(-1, 0): "l", (0, -1): "u", (0, 1): "d", (1, 0): "r"}
+udlr_to_movement = {"u": (0, -1), "d": (0, 1), "l": (-1, 0), "r": (1, 0), ".": (0, 0)}
 
 
 def solve():
@@ -48,12 +50,28 @@ def solve():
         field[y][x] *= PET
     for x, y in h:
         field[y][x] *= HUMAN
-        
+
     def is_inside_field(y: int, x: int):
         return 0 <= y < 30 and 0 <= x < 30
 
-    def can_post_obst(y: int, x: int):
-        return field[y][x] % PET != 0
+    def can_post_obst(y: int, x: int) -> bool:
+        if not is_inside_field(y, x):
+            return False
+        has_obj = field[y][x] % PET == 0 or field[y][x] % HUMAN == 0 or field[y][x] == OBST
+        for my, mx in ADJACENT:
+            my += y
+            mx += x
+            if is_inside_field(my, mx):
+                has_obj |= field[my][mx] % PET == 0 or field[y][x] == OBST
+        return not has_obj
+
+    def can_move(y: int, x: int) -> bool:
+        if not is_inside_field(y, x):
+            return False
+        return field[y][x] != OBST
+    
+    def post_obst(y: int, x: int):
+        field[y][x] = OBST
 
     def move_obj(move_dir_udlr: str, y: int, x: int, obj_type: int) -> Tuple[int, int]:
         move_y, move_x = UDLR_to_movement[move_dir_udlr]
@@ -71,19 +89,59 @@ def solve():
             p[i] = [x, y, c]
         return
 
-    def move_human(s: List[str]):
-        for i in range(m):
+    def move_human(s: Dict[int, str]):
+        for i, movement in s.items():
             x, y = h[i]
-            y, x = move_obj(s[i], y, x, HUMAN)
+            y, x = move_obj(movement, y, x, HUMAN)
             h[i] = [x, y]
         return
 
-    def decide_human_move() -> List[str]:
-        return ["."] * m
+    def decide_human_move() -> Dict[int, str]:
+        return {}
+
+    def listup_obst_post_human(movement_human_list: List[int]) -> List[str]:
+        cand = {i: 1 for i in range(m)}
+        for i in movement_human_list:
+            cand[i] = 0
+        res = []
+        for k, v in cand.items():
+            if v:
+                res.append(k)
+        return res
+
+    def decide_obst_post(human_list: List[int]) -> Dict[int, str]:
+        res = {}
+        for i in human_list:
+            x, y = h[i]
+            for myx in ADJACENT:
+                my, mx = myx
+                my += y
+                mx += x
+                if is_inside_field(my, mx) and can_post_obst(my, mx):
+                    post_obst(my, mx)
+                    res[i] = num_to_udlr[myx]
+                    break
+            else:
+                res[i] = "."
+        return res
+
+    def decide_human_movement() -> List[str]:
+        move_human_dict = decide_human_move()
+        move_human(move_human_dict)
+        post_human_list = listup_obst_post_human(list(move_human_dict.keys()))
+        post_human_dict = decide_obst_post(post_human_list)
+        human_movement = []
+        for i in range(m):
+            if i in move_human_dict:
+                human_movement.append(move_human_dict[i])
+            else:
+                human_movement.append(post_human_dict[i])
+        return human_movement
 
     for i in range(300):
-        movement = decide_human_move()
+        movement = decide_human_movement()
         print("".join(movement), flush=True)
+
         move_pet(LS())
     return
 
