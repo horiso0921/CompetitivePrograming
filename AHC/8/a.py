@@ -48,7 +48,8 @@ def solve():
     p = LIR_(n)
     m = II()
     h = LIR_(m)
-    poster = m - 4
+    set_up = [False]
+    post_base = [30 // m]
     field = [[VACANT] * 30 for i in range(30)]
 
     for x, y, _ in p:
@@ -58,11 +59,14 @@ def solve():
 
     def is_inside_field(x: int, y: int):
         return 0 <= x < 30 and 0 <= y < 30
+    
+    def should_post_obst(x: int, y: int, index: int) -> bool:
+        return y == index * post_base[0]
 
-    def can_post_obst(x: int, y: int, normal=True) -> bool:
+    def can_post_obst(x: int, y: int, index: int) -> bool:
         if not is_inside_field(x, y):
             return False
-        if normal and y != 15:
+        if not should_post_obst(x, y ,index):
             return False
         has_obj = field[x][y] % PET == 0 or field[x][y] % HUMAN == 0 or field[x][y] == OBST
         for mx, my in ADJACENT:
@@ -79,6 +83,9 @@ def solve():
 
     def post_obst(x: int, y: int):
         field[x][y] = OBST
+
+    def has_obst(x: int, y: int):
+        return field[x][y] == OBST
 
     def move_obj(move_dir_udlr: str, x: int, y: int, obj_type: int) -> Tuple[int, int]:
         move_x, move_y = x, y
@@ -122,108 +129,61 @@ def solve():
                 res.append(x)
         return res
 
+    
     def decide_human_move(move_human_list: List[int]) -> Dict[int, str]:
         res = {}
-        yet_post = listup_obj_should_be_post()
+        print(f"#{set_up}")
+        if not set_up[0]:
+            for i in range(1, m):
+                x,y = h[i]
+                if x == 0 and abs(y - post_base[0] * i) == 1:
+                    continue
+                print(f"#{x}{y}")
+                break
+            else:
+                set_up[0] = True
         for i in move_human_list:
-
-            if poster <= i < m:
+            x,y = h[i]
+            if i == 0:
                 mx, my = ADJACENT[randint(0, 3)]
-                x, y = h[i]
                 if can_move(x+mx, y+my):
-                    print(f"#{mx} {x} {y} {my}{num_to_UDLR[(mx,my)]}")
                     res[i] = num_to_UDLR[(mx, my)]
                 else:
                     res[i] = "."
             else:
-                if len(yet_post) == 1:
-                    cand = yet_post[0]
-                    x, y = h[i]
-                    if x == cand and y == 15:
-                        res[i] = "."
-                    else:
-                        if x == cand:
-                            if y >= 16:
-                                res[i] = "L"
-                                continue
+                if set_up[0]:
+                    for mx, my in ADJACENT:
+                        mx += x
+                        my += y
+                        if is_inside_field(mx, my) and should_post_obst(mx, my, i) and has_obst(mx, my):
+                            if can_move(mx+1, my):
+                                res[i] = "D"
                             else:
-                                res[i] = "R"
-                                continue
-                        if x < cand:
-                            res[i] = "D"
-                        else:
-                            res[i] = "U"
-                else:
-                    x, y = h[i]
-                    print(f"#{x}{y}{res}")
-                    if y == 15:
-                        res[i] = "L"
-                        continue
-                    if y > 16:
-                        res[i] = "L"
-                        continue
-                    if y < 14:
-                        res[i] = "R"
-                        continue
-                    tmp = [-1, INF]
-                    for post_cand in yet_post:
-                        distance = abs(y - 15) + abs(x - post_cand)
-                        if distance < tmp[-1]:
-                            tmp = [post_cand, distance]
-                    print(f"#{tmp}")
-                    if tmp[-1] == INF:
+                                res[i] = "."
+                            break
+                    else:
                         res[i] = "."
-                    elif tmp[-1] != 1:
-                        if tmp[0] > x:
-                            res[i] = "D"
-                        elif tmp[0] < x:
+                else:
+                    base_y = post_base[0] * i
+                    base_x = 0
+                    if abs(y - base_y) != 1:
+                        if y > base_y:
+                            res[i] = "L"
+                        else:
+                            res[i] = "R"
+                    elif x != base_x:
+                        if x > base_x:
                             res[i] = "U"
                     else:
                         res[i] = "."
-
-        print(f"#{res}{yet_post}{move_human_list}")
+                            
         return res
 
-    def decide_obst_post(human_list: List[int]) -> Dict[int, str]:
-        yet_post = listup_obj_should_be_post()
+    def decide_human_post(human_list: List[int]) -> Dict[int, str]:
         res = {}
-        print(f"#{human_list}{h}")
-        # for fi in field:
-        #     print(f"#{fi}")
-        if len(yet_post) == 1:
-            for i in range(poster):
-                x, y = h[i]
-                if x == yet_post[0] and y == 15:
-                    continue
-                break
-            else:
-                cand = yet_post[0]
-                l_pet = 0
-                r_pet = 0
-                for x in range(30):
-                    for y in range(15):
-                        f = field[x][y]
-                        while f % PET == 0:
-                            f //= PET
-                            l_pet += 1
-
-                for x in range(30):
-                    for y in range(15, 30):
-                        f = field[x][y]
-                        while f % PET == 0:
-                            f //= PET
-                            r_pet += 1
-
-                if l_pet >= r_pet:
-                    if can_post_obst(cand, 14, False):
-                        res[0] = "l"
-                        post_obst(cand, 14)
-                        human_list.remove(0)
-                elif r_pet < l_pet:
-                    if can_post_obst(cand, 16, False):
-                        res[0] = "r"
-                        post_obst(cand, 16)
-                        human_list.remove(0)
+        
+        if not set_up[0]:
+            return res
 
         for i in human_list:
             x, y = h[i]
@@ -231,7 +191,7 @@ def solve():
                 mx, my = mxy
                 mx += x
                 my += y
-                if is_inside_field(mx, my) and can_post_obst(mx, my):
+                if is_inside_field(mx, my) and can_post_obst(mx, my, i):
                     post_obst(mx, my)
                     res[i] = num_to_udlr[mxy]
                     break
@@ -239,7 +199,7 @@ def solve():
         return res
 
     def decide_human_movement() -> List[str]:
-        post_human_dict = decide_obst_post([i for i in range(poster)])
+        post_human_dict = decide_human_post([i for i in range(1, m)])
         move_human_list = listup_move_human(list(post_human_dict.keys()))
         move_human_dict = decide_human_move(move_human_list)
         move_human(move_human_dict)
