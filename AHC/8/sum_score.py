@@ -3,6 +3,9 @@ for i in range(100):
     with open(f"score\{i:04}.txt", "r") as t:
         for line in t:
             line = line.lstrip("Score = ").rstrip()
-            sum += int(line)
+            try:
+                sum += int(line)
+            except:
+                print(i)
 print(sum)
             
